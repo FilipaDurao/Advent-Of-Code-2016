@@ -26,8 +26,10 @@ int main(){
 	string password = "", input = "ojvtpuvg";
 	string character;
 	int counter = 367403;
-	unsigned int index, newIndex;
-	vector<pair<char, int>> lettersIndexes;
+	unsigned int index;
+	vector<char> letters;
+	vector<int> indexes;
+	bool exists;
 
 
 	while (true){
@@ -37,12 +39,23 @@ int main(){
 		character += to_string(counter);
 
 		if (checkIf5Zeros(md5(character))){
-			if( (md5(character)[5] < 7) && (md5(character)[5] > 0)){
-				newIndex = md5(character)[5];
-				lettersIndexes.push_back(make_pair(md5(character)[6],newIndex));
-				if(lettersIndexes.size() == 2){
-					break;
-				}
+			if( (md5(character)[5] > 47) && (md5(character)[5] < 56)){
+
+//				for(int i = 0; i < indexes.size(); i++){
+//					if(md5(character)[5] == indexes.at(i)){
+//						exists = true;
+//					}
+//				}
+
+//				if(!exists){
+					letters.push_back(md5(character)[6]);
+					indexes.push_back(md5(character)[5]);
+					cout << "New element" << endl;
+					cout << md5(character)[6] << " " << md5(character)[5] << endl;
+					if(letters.size() == 25){
+						break;
+					}
+				//}
 			}
 		}
 
@@ -51,14 +64,14 @@ int main(){
 			character.erase(index, to_string(counter).size());
 		}
 
-		cout << counter << endl;
+	//	exists = false;
 		counter++;
 	}
 
 
 
-	for (unsigned int i = 0; i < lettersIndexes.size(); i++){
-		cout << endl << lettersIndexes.at(i).first << "  " << lettersIndexes.at(i).second << endl;
+	for (unsigned int i = 0; i < letters.size(); i++){
+		cout << endl << letters.at(i) << "  " << indexes.at(i) << endl;
 	}
 }
 

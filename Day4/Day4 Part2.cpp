@@ -1,9 +1,10 @@
 /*
- * Day4 Part1.cpp
+ * Day4 Part2.cpp
  *
- *  Created on: 02/11/2017
+ *  Created on: 03/11/2017
  *      Author: filipa
  */
+
 
 #include <iostream>
 #include <vector>
@@ -48,7 +49,10 @@ public:
 	}
 };
 
-int main(){
+
+vector<string> realRooms;
+
+void getRealRooms(){
 
 	string room;
 	ifstream in_stream("Input Day 4.txt");
@@ -125,12 +129,7 @@ int main(){
 
 
 		if ( (code1 == input1) && (code2 == input2) && (code3 == input3) && (code4 == input4) && (code5 == input5) ){
-
-			int index = distance(room.begin(), room.end()-10);
-			string sector = room.substr(index, 3);
-			int numSector = stoi(sector);
-
-			sum += numSector;
+			realRooms.push_back(room);
 		}
 
 
@@ -138,8 +137,68 @@ int main(){
 		lettersFreqs.clear();
 
 	}
+}
 
-	cout << sum;
+
+int getSector (string room){
+
+	int index = distance(room.begin(), room.end()-10);
+	string sector = room.substr(index, 3);
+	int numSector = stoi(sector);
+
+
+	return numSector;
+}
+
+
+char makeRotation(char letter, int numRots){
+
+	string alfabet = "abcdefghijklmnopqrstuvwxyz";
+	int index;
+
+	if(letter == '-')
+		return ' ';
+
+	for(int i = 0; i < alfabet.size(); i++){
+		if(letter == alfabet[i]){
+			index = i;
+			break;
+		}
+	}
+
+	index = (index + numRots)%26;
+
+	return alfabet[index];
+}
+
+int main(){
+
+	getRealRooms();
+
+	vector<string> decodedRooms;
+	string room;
+	int sector;
+
+	for(unsigned int i = 0; i < realRooms.size(); i++){
+
+		room = realRooms.at(i);
+
+		sector = getSector(room);	// How many rotations
+
+		for (unsigned int j = 0; j < room.size()-11; j++){
+			room[j] = makeRotation(room[j], sector);
+		}
+
+		decodedRooms.push_back(room);
+	}
+
+
+	sort(decodedRooms.begin(), decodedRooms.end());
+
+	for(int i = 0; i < decodedRooms.size(); i++){
+		cout << decodedRooms.at(i) << endl;
+	}
+
 }
 
 

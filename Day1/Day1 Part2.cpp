@@ -85,36 +85,40 @@ int main(){
 		move.erase(0, 1);
 		delta = stoi(move);
 
-		switch (direction){
-		case 0:
-			y += delta;
-			break;
+		while (delta > 0){
 
-		case 1:
-			x += delta;
-			break;
+			switch (direction){
+			case 0:
+				y ++;
+				break;
 
-		case 2:
-			y -= delta;
-			break;
+			case 1:
+				x ++;
+				break;
 
-		case 3:
-			x -= delta;
-		}
+			case 2:
+				y --;
+				break;
 
+			case 3:
+				x --;
+				break;
+			}
 
-		for(int i = 0; i < xPos.size(); i++){
-			if(xPos.at(i) == x){
-				if(yPos.at(i) == y){
+			delta --;
+
+			for(int i = 0; i < xPos.size(); i++){
+				if((x == xPos.at(i)) && (y == yPos.at(i))){
 					xFinal = xPos.at(i);
 					yFinal = yPos.at(i);
+					cout << abs(xFinal) + abs(yFinal) << endl;
+					exit(0);
 					break;
 				}
 			}
+			xPos.push_back(x);
+			yPos.push_back(y);
 		}
-		xPos.push_back(x);
-		yPos.push_back(y);
-
 	}
 
 	cout << abs(xFinal)+abs(yFinal);

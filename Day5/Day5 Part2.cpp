@@ -1,12 +1,12 @@
 /*
- * Day5 Part1.cpp
+ * Day5 Part2.cpp
  *
- *  Created on: 03/11/2017
+ *  Created on: 05/11/2017
  *      Author: filipa
  */
 
-
 #include <iostream>
+#include <vector>
 #include "md5.h"
 
 
@@ -26,7 +26,8 @@ int main(){
 	string password = "", input = "ojvtpuvg";
 	string character;
 	int counter = 367403;
-	unsigned int index;
+	unsigned int index, newIndex;
+	vector<pair<char, int>> lettersIndexes;
 
 
 	while (true){
@@ -36,10 +37,12 @@ int main(){
 		character += to_string(counter);
 
 		if (checkIf5Zeros(md5(character))){
-			password += md5(character)[5];
-			cout << "\n\n\n\n\nELEMENT\n\n\n\n\n" << endl;
-			if(password.size() == 8){
-				break;
+			if( (md5(character)[5] < 7) && (md5(character)[5] > 0)){
+				newIndex = md5(character)[5];
+				lettersIndexes.push_back(make_pair(md5(character)[6],newIndex));
+				if(lettersIndexes.size() == 2){
+					break;
+				}
 			}
 		}
 
@@ -52,13 +55,11 @@ int main(){
 		counter++;
 	}
 
-	cout << password;
+
+
+	for (unsigned int i = 0; i < lettersIndexes.size(); i++){
+		cout << endl << lettersIndexes.at(i).first << "  " << lettersIndexes.at(i).second << endl;
+	}
 }
-
-
-
-
-
-
 
 

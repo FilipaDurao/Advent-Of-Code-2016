@@ -1,10 +1,9 @@
 /*
- * Day6 Part1.cpp
+ * Day6 Part2.cpp
  *
- *  Created on: 04/11/2017
+ *  Created on: 05/11/2017
  *      Author: filipa
  */
-
 
 #include <iostream>
 #include <vector>
@@ -227,28 +226,28 @@ int main(){
 
 
 	sort(element1_1.begin(), element1_1.end());
-	cout << element1_1.at(element1_1.size()-1).letter<< endl;
+	cout << element1_1.at(0).letter<< endl;
 
 	sort(element2_1.begin(), element2_1.end());
-	cout << element2_1.at(element2_1.size()-1).letter << endl;
+	cout << element2_1.at(0).letter << endl;
 
 	sort(element3_1.begin(), element3_1.end());
-	cout << element3_1.at(element3_1.size()-1).letter << endl;
+	cout << element3_1.at(0).letter << endl;
 
 	sort(element4_1.begin(), element4_1.end());
-	cout << element4_1.at(element4_1.size()-1).letter;
+	cout << element4_1.at(0).letter;
 
 	sort(element5_1.begin(), element5_1.end());
-	cout << element5_1.at(element5_1.size()-1).letter;
+	cout << element5_1.at(0).letter;
 
 	sort(element6_1.begin(), element6_1.end());
-	cout << element6_1.at(element6_1.size()-1).letter;
+	cout << element6_1.at(0).letter;
 
 	sort(element7_1.begin(), element7_1.end());
-	cout << element7_1.at(element7_1.size()-1).letter;
+	cout << element7_1.at(0).letter;
 
 	sort(element8_1.begin(), element8_1.end());
-	cout << element8_1.at(element8_1.size()-1).letter;
+	cout << element8_1.at(0).letter;
 
 
 }

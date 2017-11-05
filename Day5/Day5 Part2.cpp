@@ -29,7 +29,6 @@ int main(){
 	unsigned int index;
 	vector<char> letters;
 	vector<int> indexes;
-	bool exists;
 
 
 	while (true){
@@ -41,13 +40,6 @@ int main(){
 		if (checkIf5Zeros(md5(character))){
 			if( (md5(character)[5] > 47) && (md5(character)[5] < 56)){
 
-//				for(int i = 0; i < indexes.size(); i++){
-//					if(md5(character)[5] == indexes.at(i)){
-//						exists = true;
-//					}
-//				}
-
-//				if(!exists){
 					letters.push_back(md5(character)[6]);
 					indexes.push_back(md5(character)[5]);
 					cout << "New element" << endl;
@@ -55,7 +47,6 @@ int main(){
 					if(letters.size() == 25){
 						break;
 					}
-				//}
 			}
 		}
 
@@ -64,7 +55,6 @@ int main(){
 			character.erase(index, to_string(counter).size());
 		}
 
-	//	exists = false;
 		counter++;
 	}
 
